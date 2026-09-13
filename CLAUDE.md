@@ -17,6 +17,12 @@
 - `build.py` — data.py + astro.py를 읽어 `output.html` 하나를 생성하는 빌드 스크립트. 카드형 UI, 필터(유형/안시추천도/촬영추천도)와 정렬(기본/곧 지는 순/안시추천도순/밝은순/가나다순) JS 포함.
 - `output.html` — 빌드 결과물. 이 파일 자체가 최종 산출물이며 브라우저로 바로 열면 됨.
 
+## 배포
+
+- GitHub 저장소: https://github.com/Ihwang1003/paju-astro-20260919
+- 공개 페이지(GitHub Pages): https://ihwang1003.github.io/paju-astro-20260919/
+- `build.py`로 `output.html`을 재생성한 뒤에는 `index.html`에도 복사해서 같이 push해야 배포 페이지가 갱신됨 (`cp output.html index.html`).
+
 ## 실행 방법
 
 ```bash
