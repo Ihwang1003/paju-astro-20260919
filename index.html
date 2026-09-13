@@ -1,0 +1,3554 @@
+<title>파주 관측 노트</title>
+<meta name="description" content="2026년 9월 19일 파주 안시관측 세션을 위한 대상별 정리 자료 (사진 링크·등급·크기·적정시기·촬영추천·안시추천도 필터/정렬)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0c1120;
+    --bg-2: #10182c;
+    --surface: #141d33;
+    --surface-2: #1a2540;
+    --border: #2a3757;
+    --border-soft: #202c4a;
+    --text: #e9edf7;
+    --text-dim: #aab4d1;
+    --text-faint: #7684a8;
+    --accent: #e7b768;
+    --accent-2: #f0cf94;
+    --violet: #b7a2e8;
+    --teal: #7fd8c8;
+    --rose: #e79bb0;
+    --blue: #8ab4e8;
+    --danger: #e88a6f;
+    --best: #7fd8a0;
+    --ok: #8ab4e8;
+    --hard: #e79bb0;
+    --visual: #cbb4e8;
+    --star-on: #e7b768;
+    --star-off: #3a4568;
+    --shadow: 0 12px 30px -12px rgba(0,0,0,0.55);
+    --font-display: "Fraunces", "Noto Serif KR", serif;
+    --font-body: "IBM Plex Sans KR", "Pretendard", -apple-system, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+    color-scheme: dark;
+  }
+
+  :root[data-theme="light"]{
+    --bg:#f6f4ee;
+    --bg-2:#efece2;
+    --surface:#ffffff;
+    --surface-2:#f2f0e6;
+    --border:#ddd7c4;
+    --border-soft:#e6e1d2;
+    --text:#211d15;
+    --text-dim:#5b5643;
+    --text-faint:#8b8567;
+    --accent:#a9761f;
+    --accent-2:#c78f2f;
+    --star-off: #ddd5bd;
+    --shadow: 0 10px 26px -14px rgba(60,50,20,0.28);
+    color-scheme: light;
+  }
+
+  /* red-light (night vision) mode: overrides everything to shades of red */
+  :root[data-redlight="on"]{
+    --bg:#0a0000;
+    --bg-2:#120202;
+    --surface:#170303;
+    --surface-2:#1d0404;
+    --border:#4a0d0d;
+    --border-soft:#330909;
+    --text:#ff6a5a;
+    --text-dim:#c94b3f;
+    --text-faint:#8a332b;
+    --accent:#ff8a6a;
+    --accent-2:#ff9d80;
+    --violet:#ff6a5a; --teal:#ff6a5a; --rose:#ff6a5a; --blue:#ff6a5a;
+    --best:#ff8a6a; --ok:#ff8a6a; --hard:#ff8a6a; --visual:#ff8a6a;
+    --star-on:#ff8a6a; --star-off:#3a1210;
+    --shadow: none;
+    color-scheme: dark;
+  }
+  :root[data-redlight="on"] img,
+  :root[data-redlight="on"] .cat-emoji { filter: grayscale(1) sepia(1) hue-rotate(-40deg) saturate(4); }
+
+  *{ box-sizing: border-box; }
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(231,183,104,0.08), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 90% 10%, rgba(138,180,232,0.07), transparent 55%),
+      var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height:1.6;
+    padding: 0 0 80px;
+    transition: background-color .2s ease, color .2s ease;
+  }
+  a { color: var(--accent); }
+  h1,h2,h3{ font-family: var(--font-display); font-weight:700; text-wrap: balance; margin:0; }
+
+  .wrap{ max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+
+  /* ---------- controls (theme / redlight) ---------- */
+  .controls{
+    position: sticky; top:0; z-index: 40;
+    display:flex; justify-content:flex-end; gap:8px;
+    padding: 10px 20px;
+    background: linear-gradient(to bottom, var(--bg) 70%, transparent);
+    backdrop-filter: blur(6px);
+  }
+  .ctl-btn{
+    font-family: var(--font-body); font-size:12.5px; font-weight:600;
+    background: var(--surface); color: var(--text-dim);
+    border:1px solid var(--border); border-radius:999px;
+    padding:7px 14px; cursor:pointer; display:flex; align-items:center; gap:6px;
+  }
+  .ctl-btn:hover{ color:var(--text); border-color: var(--accent); }
+  .ctl-btn[aria-pressed="true"]{ background: var(--accent); color:#1a1204; border-color: var(--accent); }
+
+  /* ---------- hero ---------- */
+  .hero{ padding: 8px 20px 30px; }
+  .hero-inner{
+    max-width:1180px; margin:0 auto;
+    border:1px solid var(--border-soft); border-radius:20px;
+    background: linear-gradient(160deg, var(--surface), var(--bg-2));
+    padding: 34px clamp(20px,4vw,48px);
+    box-shadow: var(--shadow);
+    position: relative; overflow:hidden;
+  }
+  .hero-eyebrow{
+    font-family: var(--font-mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    color: var(--accent); margin:0 0 10px;
+  }
+  .hero h1{ font-size: clamp(28px,4.4vw,42px); margin-bottom:8px; }
+  .hero-sub{ color: var(--text-dim); font-size:15.5px; max-width: 62ch; margin:0 0 24px; }
+  .hero-stats{
+    display:grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+    gap:1px; background: var(--border-soft); border:1px solid var(--border-soft);
+    border-radius:14px; overflow:hidden;
+  }
+  .hero-stat{ background: var(--surface); padding:14px 16px; }
+  .hero-stat .k{ font-size:11.5px; color:var(--text-faint); text-transform:uppercase; letter-spacing:.08em; margin-bottom:5px;}
+  .hero-stat .v{ font-family: var(--font-mono); font-size:15px; color:var(--text); font-variant-numeric: tabular-nums; }
+  .hero-note{ margin-top:18px; font-size:13.5px; color:var(--text-dim); border-left:3px solid var(--accent); padding-left:12px; }
+
+  /* ---------- nav ---------- */
+  .navbar{
+    position: sticky; top:44px; z-index:30;
+    background: var(--bg); border-bottom:1px solid var(--border-soft);
+    padding: 10px 20px;
+  }
+  .navbar-inner{ max-width:1180px; margin:0 auto; display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .navchip{
+    font-size:13px; font-weight:600; color:var(--text-dim); text-decoration:none;
+    background: var(--surface); border:1px solid var(--border-soft); border-radius:999px;
+    padding:6px 12px; white-space:nowrap;
+  }
+  .navchip:hover{ color:var(--text); border-color:var(--accent); }
+  .search{
+    flex: 0 1 200px;
+    font-family:var(--font-body); font-size:13.5px;
+    background: var(--surface); border:1px solid var(--border-soft); color:var(--text);
+    border-radius:999px; padding:7px 14px;
+  }
+  .search::placeholder{ color: var(--text-faint); }
+
+  /* ---------- filter bar ---------- */
+  .filterbar{
+    max-width:1180px; margin: 14px auto 0; padding: 16px 20px;
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .filter-panel{
+    background: var(--surface); border:1px solid var(--border-soft); border-radius:14px;
+    padding: 16px 18px; display:flex; flex-direction:column; gap:14px;
+  }
+  .filter-row{ display:flex; flex-wrap:wrap; gap:18px 26px; align-items:flex-end; }
+  .filter-group{ display:flex; flex-direction:column; gap:6px; min-width:180px; }
+  .filter-group label.fg-label{ font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--text-faint); }
+  .filter-group select{
+    font-family: var(--font-body); font-size:13.5px; color:var(--text);
+    background: var(--surface-2); border:1px solid var(--border-soft); border-radius:8px;
+    padding:7px 10px;
+  }
+  .visual-slider-row{ display:flex; align-items:center; gap:10px; }
+  .visual-slider-row input[type=range]{ width:140px; accent-color: var(--accent); }
+  .visual-slider-val{ font-family: var(--font-mono); font-size:13px; color:var(--accent); min-width:70px; }
+  .astro-toggles{ display:flex; gap:8px; flex-wrap:wrap; }
+  .astro-toggle{
+    font-size:12px; font-weight:600; font-family:var(--font-mono);
+    padding:6px 11px; border-radius:999px; cursor:pointer; user-select:none;
+    border:1px solid currentColor; background:transparent; opacity:0.35;
+  }
+  .astro-toggle.on{ opacity:1; }
+  .astro-toggle.astro-best{ color: var(--best); }
+  .astro-toggle.astro-ok{ color: var(--ok); }
+  .astro-toggle.astro-hard{ color: var(--hard); }
+  .astro-toggle.astro-visual{ color: var(--visual); }
+  .filter-actions{ display:flex; gap:10px; align-items:center; margin-left:auto; }
+  .reset-btn{
+    font-size:12.5px; font-weight:600; color: var(--text-dim); background:none;
+    border:1px solid var(--border-soft); border-radius:999px; padding:7px 14px; cursor:pointer;
+  }
+  .reset-btn:hover{ color:var(--text); border-color:var(--accent); }
+  .result-count{ font-family: var(--font-mono); font-size:12.5px; color:var(--text-faint); }
+  .result-count b{ color: var(--accent); }
+
+  /* ---------- legend ---------- */
+  .legend{
+    max-width:1180px; margin: 0 auto; padding: 0 20px;
+    display:flex; flex-wrap:wrap; gap: 10px 22px; font-size:12.5px; color:var(--text-dim);
+  }
+  .legend b{ color:var(--text); }
+  .legend .dot{ display:inline-block; width:8px;height:8px;border-radius:50%; margin-right:6px; }
+
+  /* ---------- category ---------- */
+  .category{ max-width:1180px; margin: 46px auto 0; padding:0 20px; scroll-margin-top: 100px; }
+  .cat-head{ display:flex; align-items:flex-start; gap:14px; margin-bottom:18px; flex-wrap:wrap; }
+  .cat-emoji{ font-size:30px; line-height:1; }
+  .cat-head h2{ font-size: clamp(20px,2.6vw,26px); }
+  .cat-desc{ margin:4px 0 0; color:var(--text-dim); font-size:13.5px; max-width:70ch; }
+  .cat-count{ margin-left:auto; font-family:var(--font-mono); font-size:12px; color:var(--text-faint); align-self:center; }
+
+  .grid{ display:grid; grid-template-columns: repeat(auto-fill,minmax(300px,1fr)); gap:16px; }
+  #resultsWrap{ max-width:1180px; margin: 26px auto 0; padding: 0 20px; }
+  #resultsHead{ display:flex; align-items:baseline; gap:12px; margin-bottom:16px; flex-wrap:wrap; }
+  #resultsHead h2{ font-size:20px; }
+  .empty-state{ padding: 40px 0; text-align:center; color:var(--text-faint); font-size:14px; }
+
+  .card{
+    background: var(--surface); border:1px solid var(--border-soft); border-radius:14px;
+    padding:18px; display:flex; flex-direction:column; gap:10px;
+  }
+  .card-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:10px; }
+  .card-heading h3{ font-size:18px; margin-bottom:2px; }
+  .card-en{ margin:0; font-family:var(--font-mono); font-size:11.5px; color:var(--text-faint); }
+
+  .badge{
+    flex-shrink:0; font-size:11px; font-weight:600; font-family:var(--font-mono);
+    padding:4px 9px; border-radius:999px; white-space:nowrap; cursor:help;
+    border:1px solid currentColor;
+  }
+  .astro-best{ color: var(--best); }
+  .astro-ok{ color: var(--ok); }
+  .astro-hard{ color: var(--hard); }
+  .astro-visual{ color: var(--visual); }
+
+  .chiprow{ display:flex; gap:6px; flex-wrap:wrap; }
+  .chip{
+    font-size:11.5px; padding:3px 9px; border-radius:6px;
+    background: var(--surface-2); color:var(--text-dim); border:1px solid var(--border-soft);
+  }
+
+  .visual-row{ display:flex; align-items:center; gap:8px; }
+  .visual-label{ font-size:10.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--text-faint); }
+  .stars{ font-size:14px; letter-spacing:1px; }
+  .star{ color: var(--star-off); }
+  .star.on{ color: var(--star-on); }
+
+  .flag{
+    font-size:12px; color: var(--danger); background: color-mix(in srgb, var(--danger) 12%, transparent);
+    border:1px solid color-mix(in srgb, var(--danger) 35%, transparent);
+    border-radius:8px; padding:5px 9px;
+  }
+
+  .window-row{
+    display:flex; align-items:center; gap:7px; font-size:12.5px; font-weight:600;
+    background: var(--surface-2); border:1px solid var(--border-soft); border-radius:8px;
+    padding:6px 10px; color: var(--accent);
+  }
+  .window-icon{ font-size:13px; }
+
+  .stats{
+    display:grid; grid-template-columns: 1fr 1fr; gap:8px 14px;
+    border-top:1px dashed var(--border-soft); border-bottom:1px dashed var(--border-soft);
+    padding: 10px 0;
+  }
+  .stat{ display:flex; flex-direction:column; gap:2px; }
+  .stat-wide{ grid-column: 1 / -1; }
+  .stat-label{ font-size:10.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--text-faint); }
+  .stat-value{ font-size:13.5px; color:var(--text); font-family: var(--font-mono); }
+
+  .note{ margin:0; font-size:13.5px; color:var(--text-dim); }
+  .astro-note{ margin:0; font-size:12.5px; color:var(--text-faint); }
+  .astro-note strong{ color:var(--text-dim); }
+
+  .photolink{
+    margin-top:auto; align-self:flex-start; font-size:12.5px; font-weight:600;
+    text-decoration:none; border-bottom:1px solid currentColor; padding-bottom:1px;
+  }
+
+  footer{ max-width:1180px; margin: 60px auto 0; padding: 24px 20px 0; color:var(--text-faint); font-size:12.5px; border-top:1px solid var(--border-soft); }
+
+  @media (max-width: 640px){
+    .navbar{ top:0; }
+    .hero-stats{ grid-template-columns: repeat(2,1fr); }
+    .search{ flex-basis: 100%; order: 10; }
+    .filter-row{ gap:14px 20px; }
+    .filter-actions{ margin-left:0; width:100%; justify-content:space-between; }
+  }
+</style>
+
+<div class="controls">
+  <button class="ctl-btn" id="themeBtn" type="button" aria-pressed="false">🌗 밝은 화면</button>
+  <button class="ctl-btn" id="redBtn" type="button" aria-pressed="false">🔴 야간 적색 모드</button>
+</div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Visual Observation Log · 안시관측 준비자료</p>
+    <h1>파주 관측 노트 — 2026.09.19</h1>
+    <p class="hero-sub">총 62개 대상(태양계 6 + 딥스카이 56)의 사진 링크, 밝기 등급, 겉보기 크기, 안시관측 추천도(1~5★), 오늘 밤 실제 관측 가능 시간대, 촬영 추천 여부를 정리했습니다. 아래 필터·정렬로 원하는 대상만 골라보세요.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="k">관측일</div><div class="v">2026년 9월 19일 (토) 저녁 8시 ~ 9월 20일(일) 새벽 6시</div></div>
+      <div class="hero-stat"><div class="k">장소</div><div class="v">대한민국 파주</div></div>
+      <div class="hero-stat"><div class="k">일몰</div><div class="v">약 18:35</div></div>
+      <div class="hero-stat"><div class="k">천문박명(밤 시작)</div><div class="v">약 19:55~20:05</div></div>
+      <div class="hero-stat"><div class="k">천문박명(밤 종료)</div><div class="v">약 04:35~04:45</div></div>
+      <div class="hero-stat"><div class="k">일출</div><div class="v">약 06:04</div></div>
+      <div class="hero-stat"><div class="k">달 위상</div><div class="v">상현 지난 차가는 달 (Waxing Gibbous, 월령 약 8일)</div></div>
+      <div class="hero-stat"><div class="k">월출 / 월몰</div><div class="v">14:18 / 23:23</div></div>
+    </div>
+    <p class="hero-note">💡 <strong>운용 팁</strong> — "오늘 밤 관측 가능 시간대"는 파주(위도 약 37.8°N) 기준, 고도 20° 이상을 "쓸만한 고도"로 잡아 실제로 계산한 값입니다. 정렬을 <strong>"곧 지는 순"</strong>으로 바꾸면 지금 당장 우선 봐야 할 대상이 위로 올라옵니다. 일몰·박명·행성 시각은 근사치이니 실제 관측 며칠 전 다시 확인하세요.</p>
+  </div>
+</div>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="#solar" class="navchip">🌕 태양계 천체</a>
+<a href="#galaxy" class="navchip">🌌 은하</a>
+<a href="#nebula-diffuse" class="navchip">🎆 성운</a>
+<a href="#nebula-planetary" class="navchip">💍 성운</a>
+<a href="#cluster-globular" class="navchip">🔮 성단</a>
+<a href="#cluster-sagittarius" class="navchip">🏹 성단</a>
+<a href="#cluster-cygnus" class="navchip">🦢 성단</a>
+<a href="#cluster-cassiopeia" class="navchip">🐉 성단</a>
+<a href="#cluster-winter" class="navchip">❄️ 성단</a>
+<a href="#star-polaris" class="navchip">⭐ 그 밖의 이중성</a>
+    <input class="search" id="searchBox" type="text" placeholder="대상 이름으로 검색…" />
+  </div>
+</nav>
+
+<div class="filterbar">
+  <div class="filter-panel">
+    <div class="filter-row">
+      <div class="filter-group">
+        <label class="fg-label" for="sortSelect">정렬 기준</label>
+        <select id="sortSelect">
+          <option value="default">기본 (카테고리순)</option>
+          <option value="urgency">🕐 곧 지는 순 (오늘 밤 먼저 볼 것)</option>
+          <option value="visual-desc">⭐ 안시 추천도 높은 순</option>
+          <option value="mag-asc">✨ 밝은 순 (등급 낮은 순)</option>
+          <option value="name">가나다순</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label class="fg-label" for="kindSelect">유형</label>
+        <select id="kindSelect">
+          <option value="all">전체 유형</option>
+          <option value="행성·달">행성·달</option>
+<option value="은하">은하</option>
+<option value="산광성운">산광성운</option>
+<option value="행성상성운">행성상성운</option>
+<option value="산개성단">산개성단</option>
+<option value="구상성단">구상성단</option>
+<option value="이중성·변광성">이중성·변광성</option>
+<option value="애스터리즘">애스터리즘</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label class="fg-label" for="visualSlider">안시관측 추천도 (최소)</label>
+        <div class="visual-slider-row">
+          <input type="range" id="visualSlider" min="1" max="5" step="1" value="1" />
+          <span class="visual-slider-val" id="visualSliderVal">★1 이상 (전체)</span>
+        </div>
+      </div>
+      <div class="filter-group">
+        <label class="fg-label">촬영 추천도</label>
+        <div class="astro-toggles" id="astroToggles">
+          <button type="button" class="astro-toggle astro-best on" data-astro="best">◎ 강력추천</button>
+          <button type="button" class="astro-toggle astro-ok on" data-astro="ok">○ 촬영가능</button>
+          <button type="button" class="astro-toggle astro-hard on" data-astro="hard">△ 상급자용</button>
+          <button type="button" class="astro-toggle astro-visual on" data-astro="visual">— 안시위주</button>
+        </div>
+      </div>
+      <div class="filter-actions">
+        <span class="result-count" id="resultCount"></span>
+        <button type="button" class="reset-btn" id="resetBtn">↺ 필터 초기화</button>
+      </div>
+    </div>
+  </div>
+  <div class="legend">
+    <span><span class="dot" style="background:var(--best)"></span><b>◎ 강력 추천</b> 촬영하기 좋은 대상</span>
+    <span><span class="dot" style="background:var(--ok)"></span><b>○ 촬영 가능</b> 장비·기법이 더 필요</span>
+    <span><span class="dot" style="background:var(--hard)"></span><b>△ 상급자용</b> 크고 어두운 하늘·장초점 필요</span>
+    <span><span class="dot" style="background:var(--visual)"></span><b>— 안시 위주</b> 눈으로 색·분리 감상</span>
+    <span>⭐ <b>안시 추천도</b>는 밝기+크기(표면밝기)+형태를 종합해 "맨눈/소형망원경으로 보기 좋은 정도"를 1~5로 평가한 값 (5=매우 쉬움, 1=암소하늘+대구경 필요)</span>
+  </div>
+</div>
+
+<div id="resultsWrap" hidden>
+  <div id="resultsHead">
+    <h2 id="resultsTitle">검색 결과</h2>
+    <span class="result-count" id="resultsHeadCount"></span>
+  </div>
+  <div class="grid" id="resultsGrid"></div>
+  <p class="empty-state" id="emptyState" hidden>조건에 맞는 대상이 없습니다. 필터를 조정해보세요.</p>
+</div>
+
+
+      <section class="category" id="solar" data-section="1">
+        <div class="cat-head">
+          <span class="cat-emoji">🌕</span>
+          <div>
+            <h2>태양계 천체</h2>
+            <p class="cat-desc">이번 세션은 초저녁 달빛(23:23 몰)과 새벽의 행성 퍼레이드가 함께합니다.</p>
+          </div>
+          <span class="cat-count">6개 대상</span>
+        </div>
+        <div class="grid">
+          
+        <article class="card" data-name="달 the moon" data-cat="solar"
+                 data-visual="5" data-astro="best" data-kind="행성·달"
+                 data-urgency="3.38" data-mag="-11.0">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>달</h3>
+              <p class="card-en">The Moon</p>
+            </div>
+            <span class="badge astro-best" title="지형·크레이터·바다 경계 촬영에 최적">◎ 강력 추천</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">위성</span>
+            <span class="chip chip-const">—</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 5/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span></span>
+          </div>
+          <div class="flag">⚠ 달빛 방해: 20:00~23:23</div>
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~23:22 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">약 -11 등급 (해당 위상)</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">약 0.52° (30′)</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 38만 km</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">이 날은 20:00 관측 시작 시 이미 떠 있음 (몰입 23:23)</span>
+            </div>
+          </div>
+          <p class="note">월령 약 8일, 조명율 51~56%의 차가는 상현볼록달. 터미네이터(명암 경계선) 부근 크레이터 관측에 최적기입니다. 23:23 몰 이후에는 달빛 없이 딥스카이 관측이 가능해집니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 지형·크레이터·바다 경계 촬영에 최적</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Moon" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="토성 saturn" data-cat="solar"
+                 data-visual="5" data-astro="best" data-kind="행성·달"
+                 data-urgency="10.00" data-mag="0.3">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>토성</h3>
+              <p class="card-en">Saturn</p>
+            </div>
+            <span class="badge astro-best" title="소구경으로도 고리 뚜렷, 행성 촬영(고배율 비디오 스태킹) 강력 추천">◎ 강력 추천</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">행성</span>
+            <span class="chip chip-const">물병자리(→물고기자리 경계)</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 5/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~06:00 밤새 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">약 +0.3~0.4 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">본체+고리 약 40″ (고리 기울기 약 7~8°)</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 14.5억 km</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">10/4 충 직전 — 이번 세션이 최적기, 초저녁부터 밤새 관측 가능</span>
+            </div>
+          </div>
+          <p class="note">가을철 밤하늘에서 가장 밝은 &#x27;별&#x27;입니다. 초저녁 남동쪽 하늘에 떠 있으며 자정 무렵 남중, 밤새 관측 가능합니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 소구경으로도 고리 뚜렷, 행성 촬영(고배율 비디오 스태킹) 강력 추천</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Saturn" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="화성 mars" data-cat="solar"
+                 data-visual="4" data-astro="hard" data-kind="행성·달"
+                 data-urgency="10.00" data-mag="1.0">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>화성</h3>
+              <p class="card-en">Mars</p>
+            </div>
+            <span class="badge astro-hard" title="원반이 작아 세부 관측·촬영 모두 어려움 (고배율 비디오 촬영 권장)">△ 상급자용</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">행성</span>
+            <span class="chip chip-const">쌍둥이자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 4/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 01:15부터 새벽까지 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">약 +1.0~1.1 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">시직경 약 4~5″ (매우 작음)</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">—</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">새벽 01:15경 동쪽에서 상승</span>
+            </div>
+          </div>
+          <p class="note">충을 지나 감광 중이라 밝지 않고 크기도 작습니다. 새벽 시간대, 카스토르·폴룩스 부근에서 찾을 수 있습니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 원반이 작아 세부 관측·촬영 모두 어려움 (고배율 비디오 촬영 권장)</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Mars" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="목성 jupiter" data-cat="solar"
+                 data-visual="4" data-astro="ok" data-kind="행성·달"
+                 data-urgency="10.00" data-mag="-2.1">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>목성</h3>
+              <p class="card-en">Jupiter</p>
+            </div>
+            <span class="badge astro-ok" title="줄무늬·대적점은 고도가 오른 뒤가 유리, 갈릴레이 위성 4개는 쌍안경으로도 확인">○ 촬영 가능</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">행성</span>
+            <span class="chip chip-const">쌍둥이자리→게자리 경계</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 4/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 02:49부터 새벽까지 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">약 -2.1 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">시직경 약 33~35″</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">—</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">새벽 02:50~03:00경 동쪽 지평선 위로 상승, 여명 직전이 최적</span>
+            </div>
+          </div>
+          <p class="note">이날 새벽엔 고도가 낮아 대기 흔들림(시잉) 영향이 큽니다. 04:30 이후 여명 전 잠깐이 관측 적기입니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 줄무늬·대적점은 고도가 오른 뒤가 유리, 갈릴레이 위성 4개는 쌍안경으로도 확인</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Jupiter" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="천왕성 uranus" data-cat="solar"
+                 data-visual="2" data-astro="hard" data-kind="행성·달"
+                 data-urgency="10.00" data-mag="5.7">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>천왕성</h3>
+              <p class="card-en">Uranus</p>
+            </div>
+            <span class="badge astro-hard" title="맨눈 한계 부근의 희미한 점, 별지도 대조 필수">△ 상급자용</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">행성</span>
+            <span class="chip chip-const">황소자리 (알데바란-플레이아데스 사이)</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 2/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 00:10부터 새벽까지 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">약 5.7 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">시직경 약 3.5″</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">—</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">자정 이후~새벽, 황소자리가 충분히 뜬 뒤</span>
+            </div>
+          </div>
+          <p class="note">쌍안경/파인더로는 흐릿한 청록빛 &#x27;별&#x27;로만 보입니다. star-hopping으로 정확한 위치 확인이 필요합니다. (황소자리 고도를 기준으로 추정한 상승 시각)</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 맨눈 한계 부근의 희미한 점, 별지도 대조 필수</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Uranus" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="해왕성 neptune" data-cat="solar"
+                 data-visual="2" data-astro="hard" data-kind="행성·달"
+                 data-urgency="10.00" data-mag="7.8">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>해왕성</h3>
+              <p class="card-en">Neptune</p>
+            </div>
+            <span class="badge astro-hard" title="150mm 이상 구경에서 작은 청회색 원반 확인 가능">△ 상급자용</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">행성</span>
+            <span class="chip chip-const">물고기자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 2/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~06:00 밤새 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">약 7.8 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">시직경 약 2.4″</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">—</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">9/26 충 — 이번 세션과 거의 동시기, 저녁부터 밤새 관측 가능</span>
+            </div>
+          </div>
+          <p class="note">8행성 중 가장 어둡고 작지만, 마침 충 근접 시기라 이번이 일 년 중 보기 가장 좋은 시기입니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 150mm 이상 구경에서 작은 청회색 원반 확인 가능</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Neptune" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+        </div>
+      </section>
+
+      <section class="category" id="galaxy" data-section="1">
+        <div class="cat-head">
+          <span class="cat-emoji">🌌</span>
+          <div>
+            <h2>은하</h2>
+            <p class="cat-desc">가을철 대표 은하들. 달이 지는 23:30 이후, 최대한 어두운 하늘에서 시도하세요.</p>
+          </div>
+          <span class="cat-count">6개 대상</span>
+        </div>
+        <div class="grid">
+          
+        <article class="card" data-name="안드로메다은하 m31 · ngc 224" data-cat="galaxy"
+                 data-visual="5" data-astro="best" data-kind="은하"
+                 data-urgency="10.00" data-mag="3.4">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>안드로메다은하</h3>
+              <p class="card-en">M31 · NGC 224</p>
+            </div>
+            <span class="badge astro-best" title="맨눈 관측 가능한 유일한 외부은하 사진 대상, 광시야 렌즈로 위성은하(M32·M110)까지 한 프레임">◎ 강력 추천</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">나선은하</span>
+            <span class="chip chip-const">안드로메다자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 5/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~06:00 밤새 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">3.4 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">3.2° × 1° (190′×60′)</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 250만 광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">가을 전체(9~12월), 자정 남중은 11월경</span>
+            </div>
+          </div>
+          <p class="note">맨눈으로도 희미한 타원형 빛무리가 보이는 안시관측의 스테디셀러. 쌍안경으로 훨씬 크고 뚜렷해집니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 맨눈 관측 가능한 유일한 외부은하 사진 대상, 광시야 렌즈로 위성은하(M32·M110)까지 한 프레임</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Andromeda_Galaxy" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="삼각형자리은하 m33" data-cat="galaxy"
+                 data-visual="2" data-astro="hard" data-kind="은하"
+                 data-urgency="10.00" data-mag="5.7">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>삼각형자리은하</h3>
+              <p class="card-en">M33</p>
+            </div>
+            <span class="badge astro-hard" title="표면밝기가 낮아 안시로는 매우 흐릿함 — 최대한 어두운 하늘·저배율 필수, 촬영은 오히려 잘 나오는 편">△ 상급자용</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">나선은하(정면)</span>
+            <span class="chip chip-const">삼각형자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 2/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:25부터 새벽까지 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">5.7 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">71′ × 42′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 288만 광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">가을(9~11월), M31과 비슷한 시기</span>
+            </div>
+          </div>
+          <p class="note">등급 숫자보다 실제로 훨씬 희미하게 느껴지는 &#x27;까다로운&#x27; 대상입니다. 달이 완전히 진 뒤 도전하세요.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 표면밝기가 낮아 안시로는 매우 흐릿함 — 최대한 어두운 하늘·저배율 필수, 촬영은 오히려 잘 나오는 편</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Triangulum_Galaxy" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="m74 messier 74" data-cat="galaxy"
+                 data-visual="1" data-astro="hard" data-kind="은하"
+                 data-urgency="10.00" data-mag="9.4">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>M74</h3>
+              <p class="card-en">Messier 74</p>
+            </div>
+            <span class="badge astro-hard" title="표면밝기가 매우 낮아 사진으로도 장노출이 필요한 대상">△ 상급자용</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">나선은하(정면)</span>
+            <span class="chip chip-const">물고기자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 1/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 21:10부터 새벽까지 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">9.4 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">10.5′ × 9.5′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 3,000만 광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">가을~초겨울(10~11월)</span>
+            </div>
+          </div>
+          <p class="note">메시에 천체 중 안시로 가장 어렵다고 알려진 대상 중 하나. 완전한 암소 하늘이 아니면 확인이 힘듭니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 표면밝기가 매우 낮아 사진으로도 장노출이 필요한 대상</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Messier_74" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="ngc 891 ngc 891" data-cat="galaxy"
+                 data-visual="2" data-astro="best" data-kind="은하"
+                 data-urgency="10.00" data-mag="10.8">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>NGC 891</h3>
+              <p class="card-en">NGC 891</p>
+            </div>
+            <span class="badge astro-best" title="칼날처럼 얇은 원반과 암흑대가 사진에서 인상적으로 담기는 인기 대상">◎ 강력 추천</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">나선은하(에지온)</span>
+            <span class="chip chip-const">안드로메다자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 2/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:35부터 새벽까지 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">10.8 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">13.5′ × 2.5′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 2,730만 광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">가을~초겨울(10~12월)</span>
+            </div>
+          </div>
+          <p class="note">옆에서 본 나선은하로, 가운데를 가로지르는 암흑 먼지대가 특징. 안시로는 중형(200mm 이상) 망원경이 유리합니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 칼날처럼 얇은 원반과 암흑대가 사진에서 인상적으로 담기는 인기 대상</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/NGC_891" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="ngc 7331 ngc 7331" data-cat="galaxy"
+                 data-visual="3" data-astro="best" data-kind="은하"
+                 data-urgency="9.25" data-mag="10.4">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>NGC 7331</h3>
+              <p class="card-en">NGC 7331</p>
+            </div>
+            <span class="badge astro-best" title="&#x27;우리은하를 닮은 은하&#x27;로 유명, 스테판의 오중주와 한 프레임에 담는 촬영이 인기">◎ 강력 추천</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">나선은하</span>
+            <span class="chip chip-const">페가수스자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 3/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~05:15 관측 가능 (이후 고도 20° 미만)</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">10.4 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">10.5′ × 3.7′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 4,400만 광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">가을(9~11월)</span>
+            </div>
+          </div>
+          <p class="note">바로 옆(남서쪽 약 0.5°)에 스테판의 오중주가 있어 같은 시야에서 함께 찾아보기 좋습니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> &#x27;우리은하를 닮은 은하&#x27;로 유명, 스테판의 오중주와 한 프레임에 담는 촬영이 인기</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/NGC_7331" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="스테판의 오중주 stephan&#x27;s quintet" data-cat="galaxy"
+                 data-visual="1" data-astro="hard" data-kind="은하"
+                 data-urgency="9.17" data-mag="13.9">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>스테판의 오중주</h3>
+              <p class="card-en">Stephan&#x27;s Quintet</p>
+            </div>
+            <span class="badge astro-hard" title="딥스카이 촬영 인기 대상이나 장초점·장노출 필요, 안시는 300mm 이상 대구경 권장">△ 상급자용</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">컴팩트 은하군(5개)</span>
+            <span class="chip chip-const">페가수스자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 1/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~05:10 관측 가능 (이후 고도 20° 미만)</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">13.9~16.7 등급(개별)</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">약 5′ 이내 밀집</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 3.9억~2.1~3.4억 광년(구성원마다 다름)</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">가을(9~11월)</span>
+            </div>
+          </div>
+          <p class="note">좁은 시야에 은하 5개가 모여 있는 희귀한 광경. 안시로는 어렴풋한 얼룩들로만 보이는 상급자 대상입니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 딥스카이 촬영 인기 대상이나 장초점·장노출 필요, 안시는 300mm 이상 대구경 권장</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Stephan%27s_Quintet" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+        </div>
+      </section>
+
+      <section class="category" id="nebula-diffuse" data-section="1">
+        <div class="cat-head">
+          <span class="cat-emoji">🎆</span>
+          <div>
+            <h2>성운 — 산광성운 (발광/반사)</h2>
+            <p class="cat-desc">여름철 은하수 자락의 대형 성운들. 필터(UHC/OIII) 사용 시 안시에서도 효과가 큽니다.</p>
+          </div>
+          <span class="cat-count">4개 대상</span>
+        </div>
+        <div class="grid">
+          
+        <article class="card" data-name="오리온성운 m42" data-cat="nebula-diffuse"
+                 data-visual="5" data-astro="best" data-kind="산광성운"
+                 data-urgency="10.00" data-mag="4.0">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>오리온성운</h3>
+              <p class="card-en">M42</p>
+            </div>
+            <span class="badge astro-best" title="가장 인기 있는 딥스카이 촬영 대상, 트라페지움까지 안시로도 선명">◎ 강력 추천</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산광성운(발광+반사)</span>
+            <span class="chip chip-const">오리온자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 5/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 02:20부터 새벽까지 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">4.0 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">65′ × 60′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 1,340광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">겨울 대표 성운(12~2월) — 이날은 새벽에 동쪽에서 낮게 상승</span>
+            </div>
+          </div>
+          <p class="note">새벽 고도가 낮은 채로 잠깐 볼 수 있습니다. 본격적인 관측은 12~2월 저녁이 훨씬 유리합니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 가장 인기 있는 딥스카이 촬영 대상, 트라페지움까지 안시로도 선명</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Orion_Nebula" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="북아메리카 성운 ngc 7000" data-cat="nebula-diffuse"
+                 data-visual="2" data-astro="best" data-kind="산광성운"
+                 data-urgency="8.17" data-mag="4.0">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>북아메리카 성운</h3>
+              <p class="card-en">NGC 7000</p>
+            </div>
+            <span class="badge astro-best" title="광시야 렌즈+Ha/듀오밴드 필터 촬영 대상 1순위, 안시는 대구경+OIII/UHC 성운필터 권장">◎ 강력 추천</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산광성운(발광)</span>
+            <span class="chip chip-const">백조자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 2/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~04:10 관측 가능 (이후 고도 20° 미만)</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">4 등급(적분광도, 표면밝기는 낮음)</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">120′ × 100′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 2,590광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">여름~초가을(7~9월) — 이번 세션 초저녁이 마지막 적기</span>
+            </div>
+          </div>
+          <p class="note">맨눈으로는 거의 안 보이지만 쌍안경+필터나 사진에서는 북미대륙 모양이 뚜렷합니다. 초저녁 서쪽으로 기울기 전에 보세요.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 광시야 렌즈+Ha/듀오밴드 필터 촬영 대상 1순위, 안시는 대구경+OIII/UHC 성운필터 권장</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/North_America_Nebula" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="펠리컨 성운 ic 5070" data-cat="nebula-diffuse"
+                 data-visual="1" data-astro="best" data-kind="산광성운"
+                 data-urgency="8.00" data-mag="8.0">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>펠리컨 성운</h3>
+              <p class="card-en">IC 5070</p>
+            </div>
+            <span class="badge astro-best" title="북아메리카 성운과 한 프레임 촬영 가능, 안시는 매우 어려움(사진 전용에 가까움)">◎ 강력 추천</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산광성운(발광)</span>
+            <span class="chip chip-const">백조자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 1/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~04:00 관측 가능 (이후 고도 20° 미만)</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">8.0 등급(적분광도)</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">60′ × 50′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 1,800광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">여름~초가을(7~9월), 북아메리카 성운 바로 옆</span>
+            </div>
+          </div>
+          <p class="note">북아메리카 성운 서쪽에 나란히 위치. 안시로는 대구경+필터로도 확인이 매우 까다롭습니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 북아메리카 성운과 한 프레임 촬영 가능, 안시는 매우 어려움(사진 전용에 가까움)</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Pelican_Nebula" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="ic 1396 성운(가넷스타 부근) ic 1396" data-cat="nebula-diffuse"
+                 data-visual="2" data-astro="best" data-kind="산광성운"
+                 data-urgency="9.83" data-mag="3.5">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>IC 1396 성운(가넷스타 부근)</h3>
+              <p class="card-en">IC 1396</p>
+            </div>
+            <span class="badge astro-best" title="초광시야 렌즈+Ha 필터로 &#x27;코끼리 코 성운(IC1396A)&#x27;까지 인기 촬영 대상">◎ 강력 추천</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산광성운 + 산개성단</span>
+            <span class="chip chip-const">세페우스자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 2/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~05:50 관측 가능 (이후 고도 20° 미만)</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">약 3.5 등급(포함 성단 기준, 성운 자체는 매우 낮은 표면밝기)</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">약 170′ × 140′ (약 3°)</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 2,400광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">늦여름~가을(8~10월), 세페우스자리는 연중 주극성</span>
+            </div>
+          </div>
+          <p class="note">붉은 별 가넷스타(뮤 세페이)가 성운 가장자리에 걸쳐 있습니다. 성운 자체는 안시로 거의 보이지 않고, 포함된 성긴 산개성단만 확인됩니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 초광시야 렌즈+Ha 필터로 &#x27;코끼리 코 성운(IC1396A)&#x27;까지 인기 촬영 대상</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/IC_1396" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+        </div>
+      </section>
+
+      <section class="category" id="nebula-planetary" data-section="1">
+        <div class="cat-head">
+          <span class="cat-emoji">💍</span>
+          <div>
+            <h2>성운 — 행성상성운</h2>
+            <p class="cat-desc">작고 밝은 대상이 많아 고배율 접안렌즈가 유리합니다. 대부분 장초점 촬영에 적합합니다.</p>
+          </div>
+          <span class="cat-count">8개 대상</span>
+        </div>
+        <div class="grid">
+          
+        <article class="card" data-name="고리성운 m57" data-cat="nebula-planetary"
+                 data-visual="4" data-astro="ok" data-kind="행성상성운"
+                 data-urgency="5.42" data-mag="8.8">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>고리성운</h3>
+              <p class="card-en">M57</p>
+            </div>
+            <span class="badge astro-ok" title="소형 망원경 고배율에서도 도넛 모양 뚜렷, 촬영은 장초점 권장">○ 촬영 가능</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">행성상성운</span>
+            <span class="chip chip-const">거문고자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 4/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~01:25 관측 가능 (이후 고도 20° 미만)</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">8.8 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">1.5′ × 1′ (약 84″×59″)</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 2,570광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">여름~가을(7~9월), 초저녁 머리 위 근처</span>
+            </div>
+          </div>
+          <p class="note">가장 유명한 행성상성운. 초저녁 높은 고도에 있어 이번 세션 초반에 보기 좋습니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 소형 망원경 고배율에서도 도넛 모양 뚜렷, 촬영은 장초점 권장</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Ring_Nebula" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="아령성운 m27" data-cat="nebula-planetary"
+                 data-visual="5" data-astro="best" data-kind="행성상성운"
+                 data-urgency="6.00" data-mag="7.4">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>아령성운</h3>
+              <p class="card-en">M27</p>
+            </div>
+            <span class="badge astro-best" title="행성상성운 중 가장 크고 밝아 사진·안시 모두 최우수 대상">◎ 강력 추천</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">행성상성운</span>
+            <span class="chip chip-const">여우자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 5/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~02:00 관측 가능 (이후 고도 20° 미만)</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">7.4 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">8′ × 5.6′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 1,360광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">여름~가을(7~9월)</span>
+            </div>
+          </div>
+          <p class="note">쌍안경으로도 아령 모양이 보일 만큼 밝고 큽니다. 초저녁 관측 리스트 중 최우선 추천 대상.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 행성상성운 중 가장 크고 밝아 사진·안시 모두 최우수 대상</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Dumbbell_Nebula" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="헬릭스 성운 ngc 7293" data-cat="nebula-planetary"
+                 data-visual="2" data-astro="ok" data-kind="행성상성운"
+                 data-urgency="5.83" data-mag="7.6">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>헬릭스 성운</h3>
+              <p class="card-en">NGC 7293</p>
+            </div>
+            <span class="badge astro-ok" title="가장 크고 지구에서 가장 가까운 행성상성운, 저배율 광시야+필터 촬영 유리">○ 촬영 가능</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">행성상성운</span>
+            <span class="chip chip-const">물병자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 2/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:30~01:50 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">7.6 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">25′ (달의 약 5/6 크기)</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 655광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">가을(9~10월), 고도가 낮은 편이라 남쪽 하늘 트인 곳 필요</span>
+            </div>
+          </div>
+          <p class="note">크기는 크지만 표면밝기가 낮아 은근히 까다롭습니다. 남쪽 지평선이 트인 곳에서 시도하세요.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 가장 크고 지구에서 가장 가까운 행성상성운, 저배율 광시야+필터 촬영 유리</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Helix_Nebula" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="깜빡이 행성상성운 ngc 6826 (blinking planetary)" data-cat="nebula-planetary"
+                 data-visual="4" data-astro="ok" data-kind="행성상성운"
+                 data-urgency="7.33" data-mag="8.8">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>깜빡이 행성상성운</h3>
+              <p class="card-en">NGC 6826 (Blinking Planetary)</p>
+            </div>
+            <span class="badge astro-ok" title="작아서 장초점 필요, 안시에서는 직시/사시(회피시)로 밝기가 바뀌는 &#x27;깜빡임&#x27; 관찰이 포인트">○ 촬영 가능</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">행성상성운</span>
+            <span class="chip chip-const">백조자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 4/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~03:20 관측 가능 (이후 고도 20° 미만)</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">8.8 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">27″ × 24″</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 2,000광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">여름~가을(7~9월)</span>
+            </div>
+          </div>
+          <p class="note">중심별을 직접 보면 성운이 희미해지고 살짝 옆을 보면 밝아지는 재미있는 착시 효과가 유명합니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 작아서 장초점 필요, 안시에서는 직시/사시(회피시)로 밝기가 바뀌는 &#x27;깜빡임&#x27; 관찰이 포인트</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/NGC_6826" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="토성 성운 ngc 7009 (saturn nebula)" data-cat="nebula-planetary"
+                 data-visual="4" data-astro="ok" data-kind="행성상성운"
+                 data-urgency="5.25" data-mag="8.0">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>토성 성운</h3>
+              <p class="card-en">NGC 7009 (Saturn Nebula)</p>
+            </div>
+            <span class="badge astro-ok" title="고배율에서 양옆 돌기(고리 흔적)까지 보이는 촬영 인기 대상">○ 촬영 가능</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">행성상성운</span>
+            <span class="chip chip-const">물병자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 4/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~01:15 관측 가능 (이후 고도 20° 미만)</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">8.0 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">41″ × 35″ (양쪽 돌기 포함 약 1.7′)</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 2,000~4,000광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">가을(9~10월)</span>
+            </div>
+          </div>
+          <p class="note">고배율에서 토성처럼 양옆으로 돌기가 뻗어 나온 모습이 보입니다. 200mm 이상 구경을 권장합니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 고배율에서 양옆 돌기(고리 흔적)까지 보이는 촬영 인기 대상</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Saturn_Nebula" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="태아 성운 ngc 7008 (fetus nebula)" data-cat="nebula-planetary"
+                 data-visual="2" data-astro="hard" data-kind="행성상성운"
+                 data-urgency="8.92" data-mag="12.0">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>태아 성운</h3>
+              <p class="card-en">NGC 7008 (Fetus Nebula)</p>
+            </div>
+            <span class="badge astro-hard" title="어둡고 작아 촬영도 장노출·장초점 필요">△ 상급자용</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">행성상성운</span>
+            <span class="chip chip-const">백조자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 2/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~04:55 관측 가능 (이후 고도 20° 미만)</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">12.0 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">1.4′ × 1.1′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 2,800광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">여름~가을(7~9월)</span>
+            </div>
+          </div>
+          <p class="note">목록 중 가장 어두운 행성상성운. 대구경 망원경과 어두운 하늘이 필요합니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 어둡고 작아 촬영도 장노출·장초점 필요</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/NGC_7008" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="블루 스노볼 성운 ngc 7662 (blue snowball)" data-cat="nebula-planetary"
+                 data-visual="4" data-astro="ok" data-kind="행성상성운"
+                 data-urgency="10.00" data-mag="8.3">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>블루 스노볼 성운</h3>
+              <p class="card-en">NGC 7662 (Blue Snowball)</p>
+            </div>
+            <span class="badge astro-ok" title="작고 파란 원반이 사진에서 또렷하게 담김, 장초점 권장">○ 촬영 가능</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">행성상성운</span>
+            <span class="chip chip-const">안드로메다자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 4/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~06:00 밤새 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">8.3 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">32″ × 28″</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 5,730광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">가을~초겨울(10~12월)</span>
+            </div>
+          </div>
+          <p class="note">이름처럼 푸르스름한 눈덩이 색이 특징적인 작고 밝은 행성상성운입니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 작고 파란 원반이 사진에서 또렷하게 담김, 장초점 권장</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/NGC_7662" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="에스키모 성운 ngc 2392 (eskimo/clown face)" data-cat="nebula-planetary"
+                 data-visual="3" data-astro="ok" data-kind="행성상성운"
+                 data-urgency="10.00" data-mag="9.1">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>에스키모 성운</h3>
+              <p class="card-en">NGC 2392 (Eskimo/Clown Face)</p>
+            </div>
+            <span class="badge astro-ok" title="털모자를 쓴 얼굴 같은 구조가 촬영에서 인상적, 고배율·장초점 필요">○ 촬영 가능</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">행성상성운</span>
+            <span class="chip chip-const">쌍둥이자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 3/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 02:50부터 새벽까지 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">9.1 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">48″ × 48″</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 6,520광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">겨울(1~2월) — 이날은 새벽에 화성 근처로 낮게 떠오름</span>
+            </div>
+          </div>
+          <p class="note">새벽 시간대, 화성이 있는 쌍둥이자리 부근에서 함께 찾아볼 수 있습니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 털모자를 쓴 얼굴 같은 구조가 촬영에서 인상적, 고배율·장초점 필요</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Eskimo_Nebula" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+        </div>
+      </section>
+
+      <section class="category" id="cluster-globular" data-section="1">
+        <div class="cat-head">
+          <span class="cat-emoji">🔮</span>
+          <div>
+            <h2>성단 — 구상성단</h2>
+            <p class="cat-desc">가을철 하늘의 대표 구상성단 두 곳입니다.</p>
+          </div>
+          <span class="cat-count">2개 대상</span>
+        </div>
+        <div class="grid">
+          
+        <article class="card" data-name="m15 messier 15" data-cat="cluster-globular"
+                 data-visual="4" data-astro="ok" data-kind="구상성단"
+                 data-urgency="7.00" data-mag="6.2">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>M15</h3>
+              <p class="card-en">Messier 15</p>
+            </div>
+            <span class="badge astro-ok" title="중심부가 매우 밀집되어 있어 고배율 촬영·안시 모두 인상적">○ 촬영 가능</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">구상성단</span>
+            <span class="chip chip-const">페가수스자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 4/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~03:00 관측 가능 (이후 고도 20° 미만)</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">6.2 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">18′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 3만 3,600광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">가을(9~11월)</span>
+            </div>
+          </div>
+          <p class="note">은하수 구상성단 중 핵심부 밀도가 가장 높은 축에 속합니다. 중형 망원경에서 알갱이처럼 분해되기 시작합니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 중심부가 매우 밀집되어 있어 고배율 촬영·안시 모두 인상적</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Messier_15" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="m2 messier 2" data-cat="cluster-globular"
+                 data-visual="4" data-astro="ok" data-kind="구상성단"
+                 data-urgency="6.42" data-mag="6.5">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>M2</h3>
+              <p class="card-en">Messier 2</p>
+            </div>
+            <span class="badge astro-ok" title="M15와 비슷한 밝기·크기, 촬영 시 별상 분해가 매력">○ 촬영 가능</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">구상성단</span>
+            <span class="chip chip-const">물병자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 4/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~02:25 관측 가능 (이후 고도 20° 미만)</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">6.5 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">16′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 3만 8,100광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">가을(8~10월)</span>
+            </div>
+          </div>
+          <p class="note">M15와 함께 가을철 대표 구상성단으로 꼽히며 밝기와 크기가 비슷해 비교 관측하기 좋습니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> M15와 비슷한 밝기·크기, 촬영 시 별상 분해가 매력</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Messier_2" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+        </div>
+      </section>
+
+      <section class="category" id="cluster-sagittarius" data-section="1">
+        <div class="cat-head">
+          <span class="cat-emoji">🏹</span>
+          <div>
+            <h2>성단 — 궁수자리·방패자리 그룹 (초저녁 우선 관측!)</h2>
+            <p class="cat-desc">이 대상들은 여름철이 최적기라 9월 저녁엔 이미 남서쪽 하늘 낮게 걸려 있습니다. 20:00~21:30 사이, 가장 먼저 관측하세요.</p>
+          </div>
+          <span class="cat-count">6개 대상</span>
+        </div>
+        <div class="grid">
+          
+        <article class="card" data-name="야생오리 성단 m11 (wild duck cluster)" data-cat="cluster-sagittarius"
+                 data-visual="5" data-astro="best" data-kind="산개성단"
+                 data-urgency="3.33" data-mag="5.8">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>야생오리 성단</h3>
+              <p class="card-en">M11 (Wild Duck Cluster)</p>
+            </div>
+            <span class="badge astro-best" title="메시에 산개성단 중 가장 밀집도가 높아 마치 구상성단처럼 보이는 인기 촬영 대상">◎ 강력 추천</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산개성단</span>
+            <span class="chip chip-const">방패자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 5/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span></span>
+          </div>
+          <div class="flag">⚠ 초저녁 낮은 고도, 서두르세요</div>
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~23:20 관측 가능 (이후 고도 20° 미만)</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">5.8 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">22.8′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 6,120광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">여름(6~8월) — 9/19 초저녁이 마지막 관측 기회</span>
+            </div>
+          </div>
+          <p class="note">부채꼴로 퍼진 별들이 날아가는 오리떼를 닮았다 하여 붙은 이름. 목록 중 가장 촘촘한 산개성단입니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 메시에 산개성단 중 가장 밀집도가 높아 마치 구상성단처럼 보이는 인기 촬영 대상</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Wild_Duck_Cluster" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="m26 messier 26" data-cat="cluster-sagittarius"
+                 data-visual="3" data-astro="ok" data-kind="산개성단"
+                 data-urgency="3.08" data-mag="8.0">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>M26</h3>
+              <p class="card-en">Messier 26</p>
+            </div>
+            <span class="badge astro-ok" title="M11보다 성기고 어두워 안시 위주">○ 촬영 가능</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산개성단</span>
+            <span class="chip chip-const">방패자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 3/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span><span class="star">★</span></span>
+          </div>
+          <div class="flag">⚠ 초저녁 낮은 고도</div>
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~23:05 관측 가능 (이후 고도 20° 미만)</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">8.0 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">14′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 5,160광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">여름(6~8월)</span>
+            </div>
+          </div>
+          <p class="note">M11에서 남동쪽으로 멀지 않은 곳에 있는 비교적 어두운 산개성단입니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> M11보다 성기고 어두워 안시 위주</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Messier_26" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="m23 messier 23" data-cat="cluster-sagittarius"
+                 data-visual="4" data-astro="ok" data-kind="산개성단"
+                 data-urgency="1.50" data-mag="5.5">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>M23</h3>
+              <p class="card-en">Messier 23</p>
+            </div>
+            <span class="badge astro-ok" title="넓은 시야에 걸쳐 별이 흩어져 있어 광시야 촬영에 적합">○ 촬영 가능</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산개성단</span>
+            <span class="chip chip-const">궁수자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 4/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span></span>
+          </div>
+          <div class="flag">⚠ 초저녁 낮은 고도</div>
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~21:30 관측 가능 (이후 고도 20° 미만)</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">5.5 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">35′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 2,050광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">여름(6~8월)</span>
+            </div>
+          </div>
+          <p class="note">150개 이상의 별이 넓게 퍼진 크고 성긴 산개성단입니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 넓은 시야에 걸쳐 별이 흩어져 있어 광시야 촬영에 적합</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Messier_23" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="m25 messier 25 (ic 4725)" data-cat="cluster-sagittarius"
+                 data-visual="4" data-astro="ok" data-kind="산개성단"
+                 data-urgency="2.00" data-mag="4.6">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>M25</h3>
+              <p class="card-en">Messier 25 (IC 4725)</p>
+            </div>
+            <span class="badge astro-ok" title="쌍안경 시야에 잘 맞는 크기, 광시야 촬영 적합">○ 촬영 가능</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산개성단</span>
+            <span class="chip chip-const">궁수자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 4/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span></span>
+          </div>
+          <div class="flag">⚠ 초저녁 낮은 고도</div>
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~22:00 관측 가능 (이후 고도 20° 미만)</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">4.6 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">36′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 2,000광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">여름(6~8월)</span>
+            </div>
+          </div>
+          <p class="note">쌍안경으로도 별이 잘 분해되는 밝고 큰 산개성단입니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 쌍안경 시야에 잘 맞는 크기, 광시야 촬영 적합</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Messier_25" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="m18 messier 18" data-cat="cluster-sagittarius"
+                 data-visual="3" data-astro="ok" data-kind="산개성단"
+                 data-urgency="2.00" data-mag="7.5">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>M18</h3>
+              <p class="card-en">Messier 18</p>
+            </div>
+            <span class="badge astro-ok" title="M17(오메가성운)과 M24 사이, 광시야 딥스카이 사진의 경유지">○ 촬영 가능</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산개성단</span>
+            <span class="chip chip-const">궁수자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 3/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span><span class="star">★</span></span>
+          </div>
+          <div class="flag">⚠ 초저녁 낮은 고도</div>
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~22:00 관측 가능 (이후 고도 20° 미만)</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">7.5 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">9.8′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 4,230광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">여름(6~8월)</span>
+            </div>
+          </div>
+          <p class="note">비교적 어리고 성긴 산개성단으로, 오메가성운과 M24 사이 길목에 있습니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> M17(오메가성운)과 M24 사이, 광시야 딥스카이 사진의 경유지</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Messier_18" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="작은 궁수자리 스타클라우드 m24" data-cat="cluster-sagittarius"
+                 data-visual="5" data-astro="best" data-kind="산개성단"
+                 data-urgency="1.83" data-mag="4.5">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>작은 궁수자리 스타클라우드</h3>
+              <p class="card-en">M24</p>
+            </div>
+            <span class="badge astro-best" title="쌍안경·저배율 광시야 촬영에 최고의 은하수 대상, 수많은 별이 배경 성운처럼 뭉쳐 보임">◎ 강력 추천</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">성운상 항성운(스타클라우드)</span>
+            <span class="chip chip-const">궁수자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 5/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span></span>
+          </div>
+          <div class="flag">⚠ 초저녁 낮은 고도</div>
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~21:50 관측 가능 (이후 고도 20° 미만)</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">4.5 등급(전체)</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">120′ × 60′ (약 2°×1°)</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">1만~1.5만 광년(폭 방향)</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">여름(6~8월)</span>
+            </div>
+          </div>
+          <p class="note">성단이 아니라 우리은하 원반의 별들이 창문처럼 뚫려 보이는 &#x27;스타클라우드&#x27;입니다. 쌍안경으로 보면 압도적입니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 쌍안경·저배율 광시야 촬영에 최고의 은하수 대상, 수많은 별이 배경 성운처럼 뭉쳐 보임</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Small_Sagittarius_Star_Cloud" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+        </div>
+      </section>
+
+      <section class="category" id="cluster-cygnus" data-section="1">
+        <div class="cat-head">
+          <span class="cat-emoji">🦢</span>
+          <div>
+            <h2>성단 — 백조자리·여우자리·거문고자리 그룹</h2>
+            <p class="cat-desc">초저녁부터 머리 위 은하수를 따라 늘어선 산개성단들. 이번 세션 초·중반의 주력 대상입니다.</p>
+          </div>
+          <span class="cat-count">10개 대상</span>
+        </div>
+        <div class="grid">
+          
+        <article class="card" data-name="옷걸이 성단 collinder 399 (brocchi&#x27;s cluster / coathanger)" data-cat="cluster-cygnus"
+                 data-visual="5" data-astro="best" data-kind="애스터리즘"
+                 data-urgency="5.33" data-mag="3.6">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>옷걸이 성단</h3>
+              <p class="card-en">Collinder 399 (Brocchi&#x27;s Cluster / Coathanger)</p>
+            </div>
+            <span class="badge astro-best" title="쌍안경·저배율 광시야에 옷걸이 모양이 그대로 담기는 인기 대상">◎ 강력 추천</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">애스터리즘</span>
+            <span class="chip chip-const">여우자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 5/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~01:20 관측 가능 (이후 고도 20° 미만)</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">3.6 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">약 60′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">구성 별마다 235~1,735광년으로 제각각</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">여름~가을(7~9월)</span>
+            </div>
+          </div>
+          <p class="note">실제 성단이 아니라 우연히 늘어선 별들의 모임(애스터리즘)입니다. 쌍안경으로 보면 정말 옷걸이 모양입니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 쌍안경·저배율 광시야에 옷걸이 모양이 그대로 담기는 인기 대상</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Brocchi%27s_Cluster" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="m39 messier 39" data-cat="cluster-cygnus"
+                 data-visual="4" data-astro="ok" data-kind="산개성단"
+                 data-urgency="9.00" data-mag="4.6">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>M39</h3>
+              <p class="card-en">Messier 39</p>
+            </div>
+            <span class="badge astro-ok" title="성긴 삼각형 모양, 저배율·쌍안경 위주">○ 촬영 가능</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산개성단</span>
+            <span class="chip chip-const">백조자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 4/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~05:00 관측 가능 (이후 고도 20° 미만)</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">4.6 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">29′ (보름달 크기)</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 1,010광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">여름~가을(8~10월)</span>
+            </div>
+          </div>
+          <p class="note">느슨하게 흩어진 밝은 별들로 이루어져 저배율 쌍안경 관측에 잘 맞습니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 성긴 삼각형 모양, 저배율·쌍안경 위주</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Messier_39" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="m29 messier 29" data-cat="cluster-cygnus"
+                 data-visual="3" data-astro="ok" data-kind="산개성단"
+                 data-urgency="7.25" data-mag="7.1">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>M29</h3>
+              <p class="card-en">Messier 29</p>
+            </div>
+            <span class="badge astro-ok" title="작고 아담해 촬영 시 다른 대상과 함께 담기 좋음">○ 촬영 가능</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산개성단</span>
+            <span class="chip chip-const">백조자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 3/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~03:15 관측 가능 (이후 고도 20° 미만)</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">7.1 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">7′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 5,240광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">여름~가을(7~9월)</span>
+            </div>
+          </div>
+          <p class="note">백조자리 감마별(사드르) 근처의 작고 아담한 산개성단입니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 작고 아담해 촬영 시 다른 대상과 함께 담기 좋음</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Messier_29" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="ngc 6811 (hole in a cluster) ngc 6811" data-cat="cluster-cygnus"
+                 data-visual="3" data-astro="ok" data-kind="산개성단"
+                 data-urgency="6.92" data-mag="6.8">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>NGC 6811 (Hole in a Cluster)</h3>
+              <p class="card-en">NGC 6811</p>
+            </div>
+            <span class="badge astro-ok" title="가운데 별이 성긴 &#x27;구멍&#x27; 구조가 사진에서 특징적">○ 촬영 가능</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산개성단</span>
+            <span class="chip chip-const">백조자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 3/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~02:55 관측 가능 (이후 고도 20° 미만)</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">6.8 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">13′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 3,600광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">여름~가을(7~9월)</span>
+            </div>
+          </div>
+          <p class="note">중심부에 별이 적어 도넛처럼 가운데가 비어 보이는 독특한 구조로 유명합니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 가운데 별이 성긴 &#x27;구멍&#x27; 구조가 사진에서 특징적</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/NGC_6811" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="ngc 6819 (foxhead cluster) ngc 6819" data-cat="cluster-cygnus"
+                 data-visual="3" data-astro="ok" data-kind="산개성단"
+                 data-urgency="6.58" data-mag="7.3">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>NGC 6819 (Foxhead Cluster)</h3>
+              <p class="card-en">NGC 6819</p>
+            </div>
+            <span class="badge astro-ok" title="작고 밀집되어 장초점 촬영에 적합">○ 촬영 가능</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산개성단</span>
+            <span class="chip chip-const">백조자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 3/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~02:35 관측 가능 (이후 고도 20° 미만)</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">7.3 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">5′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 7,200광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">여름~가을(7~9월)</span>
+            </div>
+          </div>
+          <p class="note">크기는 작지만 별이 촘촘히 모여 있어 중배율 관측에 좋습니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 작고 밀집되어 장초점 촬영에 적합</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/NGC_6819" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="ngc 6871 ngc 6871" data-cat="cluster-cygnus"
+                 data-visual="3" data-astro="ok" data-kind="산개성단"
+                 data-urgency="6.75" data-mag="5.2">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>NGC 6871</h3>
+              <p class="card-en">NGC 6871</p>
+            </div>
+            <span class="badge astro-ok" title="젊고 밝은 별로 구성, 주변 성운과 함께 촬영하기 좋음">○ 촬영 가능</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산개성단</span>
+            <span class="chip chip-const">백조자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 3/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~02:45 관측 가능 (이후 고도 20° 미만)</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">5.2 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">9.3′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 5,130광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">여름~가을(7~9월)</span>
+            </div>
+          </div>
+          <p class="note">맨눈 한계에 가까운 밝기의 젊은 산개성단으로, 쌍안경으로 쉽게 확인됩니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 젊고 밝은 별로 구성, 주변 성운과 함께 촬영하기 좋음</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/NGC_6871" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="ngc 6940 ngc 6940" data-cat="cluster-cygnus"
+                 data-visual="4" data-astro="ok" data-kind="산개성단"
+                 data-urgency="6.92" data-mag="6.3">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>NGC 6940</h3>
+              <p class="card-en">NGC 6940</p>
+            </div>
+            <span class="badge astro-ok" title="넓고 별이 많아 광시야 촬영에 적합">○ 촬영 가능</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산개성단</span>
+            <span class="chip chip-const">여우자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 4/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~02:55 관측 가능 (이후 고도 20° 미만)</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">6.3 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">25′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 2,510광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">여름~가을(8~10월)</span>
+            </div>
+          </div>
+          <p class="note">상당히 크고 별이 풍부해 쌍안경으로도 인상적인 모습을 보여줍니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 넓고 별이 많아 광시야 촬영에 적합</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/NGC_6940" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="알비레오 (이중성) albireo (β cygni)" data-cat="cluster-cygnus"
+                 data-visual="5" data-astro="visual" data-kind="이중성·변광성"
+                 data-urgency="5.83" data-mag="3.2">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>알비레오 (이중성)</h3>
+              <p class="card-en">Albireo (β Cygni)</p>
+            </div>
+            <span class="badge astro-visual" title="색 대비를 눈으로 감상하는 안시 대표 대상, 사진은 와이드필드 스타필드 정도">— 안시 위주</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">이중성</span>
+            <span class="chip chip-const">백조자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 5/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~01:50 관측 가능 (이후 고도 20° 미만)</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">주성 3.2 / 동반성 5.8 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">—</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">각거리</span>
+              <span class="stat-value">35″</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 380광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">여름~가을(6~9월)</span>
+            </div>
+          </div>
+          <p class="note">금색과 파란색 별이 나란히 있는, 밤하늘에서 가장 아름다운 이중성으로 꼽힙니다. 소형 망원경으로도 쉽게 분리됩니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 색 대비를 눈으로 감상하는 안시 대표 대상, 사진은 와이드필드 스타필드 정도</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Albireo" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="61 cygni (이중성) 61 cygni" data-cat="cluster-cygnus"
+                 data-visual="4" data-astro="visual" data-kind="이중성·변광성"
+                 data-urgency="8.00" data-mag="5.2">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>61 Cygni (이중성)</h3>
+              <p class="card-en">61 Cygni</p>
+            </div>
+            <span class="badge astro-visual" title="안시 전용, 두 별 모두 주황색 K형 별이라 색 대비는 크지 않음">— 안시 위주</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">이중성</span>
+            <span class="chip chip-const">백조자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 4/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~04:00 관측 가능 (이후 고도 20° 미만)</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">A 5.2 / B 6.1 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">—</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">각거리</span>
+              <span class="stat-value">약 16~20″</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 11.4광년(태양 인접 항성)</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">여름~가을(7~10월)</span>
+            </div>
+          </div>
+          <p class="note">태양계에서 15번째로 가까운 항성계이자, 가장 큰 고유운동을 가진 육안 별로 유명합니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 안시 전용, 두 별 모두 주황색 K형 별이라 색 대비는 크지 않음</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/61_Cygni" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="ε lyrae (더블더블 스타) epsilon lyrae" data-cat="cluster-cygnus"
+                 data-visual="3" data-astro="visual" data-kind="이중성·변광성"
+                 data-urgency="5.67" data-mag="4.7">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>ε Lyrae (더블더블 스타)</h3>
+              <p class="card-en">Epsilon Lyrae</p>
+            </div>
+            <span class="badge astro-visual" title="고배율 접안(150배 이상)로 4개 별 모두 분리해보는 안시 챌린지 대상">— 안시 위주</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">다중성(이중의 이중성)</span>
+            <span class="chip chip-const">거문고자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 3/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~01:40 관측 가능 (이후 고도 20° 미만)</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">ε¹: 4.7/6.2, ε²: 5.1/5.5 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">—</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">각거리</span>
+              <span class="stat-value">넓은 쌍 208″ · 각 쌍 내부 약 2.3~2.4″</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 160광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">여름~가을(6~9월), 직녀성(베가) 바로 옆</span>
+            </div>
+          </div>
+          <p class="note">쌍안경으로 이중성처럼 보이지만, 고배율 망원경으로 보면 각 별이 다시 이중성으로 갈라지는 &#x27;더블더블&#x27;입니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 고배율 접안(150배 이상)로 4개 별 모두 분리해보는 안시 챌린지 대상</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Epsilon_Lyrae" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+        </div>
+      </section>
+
+      <section class="category" id="cluster-cassiopeia" data-section="1">
+        <div class="cat-head">
+          <span class="cat-emoji">🐉</span>
+          <div>
+            <h2>성단 — 카시오페아·페르세우스 그룹 (연중 관측 가능·주극성)</h2>
+            <p class="cat-desc">카시오페아자리는 파주(북위 약 37.8°)에서 주극성이라 밤새 지지 않습니다. 밤이 깊을수록 고도가 높아져 후반부 관측에 유리합니다.</p>
+          </div>
+          <span class="cat-count">11개 대상</span>
+        </div>
+        <div class="grid">
+          
+        <article class="card" data-name="페르세우스 이중성단 ngc 869 &amp; ngc 884 (double cluster)" data-cat="cluster-cassiopeia"
+                 data-visual="5" data-astro="best" data-kind="산개성단"
+                 data-urgency="10.00" data-mag="3.7">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>페르세우스 이중성단</h3>
+              <p class="card-en">NGC 869 &amp; NGC 884 (Double Cluster)</p>
+            </div>
+            <span class="badge astro-best" title="망원경 시야 하나에 두 성단이 동시에 들어오는 최고의 촬영·안시 대상">◎ 강력 추천</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산개성단(쌍)</span>
+            <span class="chip chip-const">페르세우스자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 5/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~06:00 밤새 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">3.7 / 3.8 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">합쳐서 약 60′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 7,500광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">가을~겨울(10~1월)</span>
+            </div>
+          </div>
+          <p class="note">맨눈으로도 뿌연 얼룩 두 개가 보이며, 쌍안경으로는 별들이 폭죽처럼 쏟아지는 장관입니다. 이번 목록의 하이라이트 중 하나.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 망원경 시야 하나에 두 성단이 동시에 들어오는 최고의 촬영·안시 대상</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Double_Cluster" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="et 성단 ngc 457 (owl / et cluster)" data-cat="cluster-cassiopeia"
+                 data-visual="5" data-astro="best" data-kind="산개성단"
+                 data-urgency="10.00" data-mag="6.4">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>ET 성단</h3>
+              <p class="card-en">NGC 457 (Owl / ET Cluster)</p>
+            </div>
+            <span class="badge astro-best" title="눈(밝은 별 2개)과 팔 벌린 몸통 형태가 사진·안시 모두에서 뚜렷">◎ 강력 추천</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산개성단</span>
+            <span class="chip chip-const">카시오페아자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 5/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~06:00 밤새 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">6.4 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">20′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 7,900광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">연중 가능(주극성), 가을~겨울 고도 최적</span>
+            </div>
+          </div>
+          <p class="note">영화 ET 캐릭터를 닮았다 하여 붙은 애칭으로 유명한, 인상적인 모양의 산개성단입니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 눈(밝은 별 2개)과 팔 벌린 몸통 형태가 사진·안시 모두에서 뚜렷</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/NGC_457" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="ngc 7789 (캐롤라인의 장미) ngc 7789" data-cat="cluster-cassiopeia"
+                 data-visual="4" data-astro="best" data-kind="산개성단"
+                 data-urgency="10.00" data-mag="6.7">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>NGC 7789 (캐롤라인의 장미)</h3>
+              <p class="card-en">NGC 7789</p>
+            </div>
+            <span class="badge astro-best" title="수많은 희미한 별이 장미 꽃잎처럼 퍼진 구조가 사진에서 아름답게 표현됨">◎ 강력 추천</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산개성단</span>
+            <span class="chip chip-const">카시오페아자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 4/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~06:00 밤새 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">6.7 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">16′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 7,600광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">가을~겨울(10~12월)</span>
+            </div>
+          </div>
+          <p class="note">발견자 캐롤라인 허셜의 이름을 딴 별칭처럼, 촘촘한 별들이 꽃송이 모양을 이룹니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 수많은 희미한 별이 장미 꽃잎처럼 퍼진 구조가 사진에서 아름답게 표현됨</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/NGC_7789" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="m52 messier 52" data-cat="cluster-cassiopeia"
+                 data-visual="4" data-astro="ok" data-kind="산개성단"
+                 data-urgency="10.00" data-mag="7.3">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>M52</h3>
+              <p class="card-en">Messier 52</p>
+            </div>
+            <span class="badge astro-ok" title="NGC7789와 한 쌍으로 자주 촬영되는 대상">○ 촬영 가능</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산개성단</span>
+            <span class="chip chip-const">카시오페아자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 4/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~06:00 밤새 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">7.3 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">13′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 4,600광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">가을~겨울(9~12월)</span>
+            </div>
+          </div>
+          <p class="note">상대적으로 젊고 촘촘한 산개성단으로, NGC7789와 함께 카시오페아 관측 투어에 좋습니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> NGC7789와 한 쌍으로 자주 촬영되는 대상</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Messier_52" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="ngc 663 ngc 663" data-cat="cluster-cassiopeia"
+                 data-visual="4" data-astro="ok" data-kind="산개성단"
+                 data-urgency="10.00" data-mag="7.1">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>NGC 663</h3>
+              <p class="card-en">NGC 663</p>
+            </div>
+            <span class="badge astro-ok" title="주변 NGC 654·659와 함께 광시야 한 프레임 촬영에 적합">○ 촬영 가능</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산개성단</span>
+            <span class="chip chip-const">카시오페아자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 4/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~06:00 밤새 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">7.1 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">16′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 8,800광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">가을~겨울(10~1월)</span>
+            </div>
+          </div>
+          <p class="note">맨눈 한계에 가까운 밝은 산개성단으로, 이웃한 NGC654·659와 함께 은하수 감상에 좋습니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 주변 NGC 654·659와 함께 광시야 한 프레임 촬영에 적합</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/NGC_663" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="ngc 654 ngc 654" data-cat="cluster-cassiopeia"
+                 data-visual="3" data-astro="ok" data-kind="산개성단"
+                 data-urgency="10.00" data-mag="6.5">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>NGC 654</h3>
+              <p class="card-en">NGC 654</p>
+            </div>
+            <span class="badge astro-ok" title="NGC663 인근 소형 성단, 광시야 사진에서 조연으로 등장">○ 촬영 가능</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산개성단</span>
+            <span class="chip chip-const">카시오페아자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 3/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~06:00 밤새 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">6.5 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">6′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 7,800광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">가을~겨울(10~1월)</span>
+            </div>
+          </div>
+          <p class="note">NGC 663 바로 근처의 작고 아담한 산개성단입니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> NGC663 인근 소형 성단, 광시야 사진에서 조연으로 등장</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/NGC_654" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="ngc 659 ngc 659" data-cat="cluster-cassiopeia"
+                 data-visual="2" data-astro="hard" data-kind="산개성단"
+                 data-urgency="10.00" data-mag="7.9">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>NGC 659</h3>
+              <p class="card-en">NGC 659</p>
+            </div>
+            <span class="badge astro-hard" title="어둡고 작아 안시 위주">△ 상급자용</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산개성단</span>
+            <span class="chip chip-const">카시오페아자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 2/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~06:00 밤새 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">7.9 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">6′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 8,200광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">가을~겨울(10~1월)</span>
+            </div>
+          </div>
+          <p class="note">NGC654·663과 이웃한 세 번째 소형 산개성단으로, 목록 중 가장 어둡습니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 어둡고 작아 안시 위주</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/NGC_659" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="ngc 7788 + ngc 7790 ngc 7788 / ngc 7790" data-cat="cluster-cassiopeia"
+                 data-visual="2" data-astro="hard" data-kind="산개성단"
+                 data-urgency="10.00" data-mag="8.5">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>NGC 7788 + NGC 7790</h3>
+              <p class="card-en">NGC 7788 / NGC 7790</p>
+            </div>
+            <span class="badge astro-hard" title="작고 어두워 장초점 촬영 대상, 소형 망원경 안시로는 뿌옇게만 확인">△ 상급자용</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산개성단(쌍)</span>
+            <span class="chip chip-const">카시오페아자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 2/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~06:00 밤새 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">9.4 / 8.5 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">2.4′ / 7.4′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">— / 약 1만 800광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">가을~겨울(10~1월)</span>
+            </div>
+          </div>
+          <p class="note">두 성단이 가까이 붙어 있어 한 시야에서 함께 찾을 수 있는 상급자용 소형 산개성단 쌍입니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 작고 어두워 장초점 촬영 대상, 소형 망원경 안시로는 뿌옇게만 확인</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/NGC_7790" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="stock 2 (근육맨 성단) stock 2 (muscleman cluster)" data-cat="cluster-cassiopeia"
+                 data-visual="4" data-astro="ok" data-kind="산개성단"
+                 data-urgency="10.00" data-mag="4.4">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>Stock 2 (근육맨 성단)</h3>
+              <p class="card-en">Stock 2 (Muscleman Cluster)</p>
+            </div>
+            <span class="badge astro-ok" title="크고 성긴 구조라 쌍안경·광시야 촬영에 적합">○ 촬영 가능</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산개성단</span>
+            <span class="chip chip-const">카시오페아자리/페르세우스자리 경계</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 4/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span></span>
+          </div>
+          <div class="flag">⚠ 수치 약식(카탈로그 간 편차 있음)</div>
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~06:00 밤새 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">약 4.4 등급(약식)</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">약 60′(약식)</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 1,000광년 내외(약식)</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">가을~겨울(10~1월)</span>
+            </div>
+          </div>
+          <p class="note">이중성단 바로 옆, 넓게 흩어진 별들이 팔다리를 벌린 사람 모양(근육맨)처럼 보인다는 애칭이 있습니다. 정밀 수치는 카탈로그마다 다소 차이가 있어 참고용입니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 크고 성긴 구조라 쌍안경·광시야 촬영에 적합</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Stock_2" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="알마크 (이중성) almach (γ andromedae)" data-cat="cluster-cassiopeia"
+                 data-visual="5" data-astro="visual" data-kind="이중성·변광성"
+                 data-urgency="10.00" data-mag="2.3">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>알마크 (이중성)</h3>
+              <p class="card-en">Almach (γ Andromedae)</p>
+            </div>
+            <span class="badge astro-visual" title="금색·청색 대비가 알비레오급으로 아름다운 안시 대표 이중성">— 안시 위주</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">이중성</span>
+            <span class="chip chip-const">안드로메다자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 5/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:20부터 새벽까지 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">A 2.3 / B 5.0(BC 합) 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">—</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">각거리</span>
+              <span class="stat-value">9.6″ (A–BC)</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 390광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">가을~초겨울(10~12월)</span>
+            </div>
+          </div>
+          <p class="note">알비레오와 쌍벽을 이루는 색 대비 이중성으로, 금빛 주성과 푸른 동반성이 소형 망원경으로도 잘 분리됩니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 금색·청색 대비가 알비레오급으로 아름다운 안시 대표 이중성</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Almach" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="가넷 스타 (석류의 별) mu cephei (garnet star)" data-cat="cluster-cassiopeia"
+                 data-visual="4" data-astro="ok" data-kind="이중성·변광성"
+                 data-urgency="10.00" data-mag="3.4">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>가넷 스타 (석류의 별)</h3>
+              <p class="card-en">Mu Cephei (Garnet Star)</p>
+            </div>
+            <span class="badge astro-ok" title="깊은 붉은색이 특징이라 컬러 사진·아이피스 색 감상 모두에 인상적">○ 촬영 가능</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">변광성(적색초거성)</span>
+            <span class="chip chip-const">세페우스자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 4/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~06:00 밤새 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">3.4~5.1 등급(변광)</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">—</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 1,370광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">연중 가능(주극성), 가을 고도 최적</span>
+            </div>
+          </div>
+          <p class="note">윌리엄 허셜이 &#x27;석류석 색&#x27;이라 표현한 짙은 붉은빛의 초거성입니다. 저배율로 색을 감상하는 것이 포인트입니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 깊은 붉은색이 특징이라 컬러 사진·아이피스 색 감상 모두에 인상적</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Mu_Cephei" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+        </div>
+      </section>
+
+      <section class="category" id="cluster-winter" data-section="1">
+        <div class="cat-head">
+          <span class="cat-emoji">❄️</span>
+          <div>
+            <h2>성단 — 겨울철 그룹 (자정~새벽 상승)</h2>
+            <p class="cat-desc">황소자리·마차부자리·쌍둥이자리 대상들. 자정 이후 동쪽 하늘에서 순서대로 떠오릅니다.</p>
+          </div>
+          <span class="cat-count">8개 대상</span>
+        </div>
+        <div class="grid">
+          
+        <article class="card" data-name="플레이아데스 성단 m45 (pleiades)" data-cat="cluster-winter"
+                 data-visual="5" data-astro="best" data-kind="산개성단"
+                 data-urgency="10.00" data-mag="1.6">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>플레이아데스 성단</h3>
+              <p class="card-en">M45 (Pleiades)</p>
+            </div>
+            <span class="badge astro-best" title="파란 반사성운기까지 담기는 최고 인기 촬영 대상, 광시야 렌즈 필수">◎ 강력 추천</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산개성단</span>
+            <span class="chip chip-const">황소자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 5/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 22:55부터 새벽까지 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">1.6 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">2°</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 444광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">겨울(11~1월) — 이날은 밤 11시경부터 동쪽에서 상승</span>
+            </div>
+          </div>
+          <p class="note">맨눈으로 6~7개 별이 보이는 좀생이별. 쌍안경으로 보면 수십 개의 파란 별이 보석함처럼 펼쳐집니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 파란 반사성운기까지 담기는 최고 인기 촬영 대상, 광시야 렌즈 필수</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Pleiades" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="프레세페 성단 m44 (beehive cluster)" data-cat="cluster-winter"
+                 data-visual="4" data-astro="ok" data-kind="산개성단"
+                 data-urgency="10.00" data-mag="3.7">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>프레세페 성단</h3>
+              <p class="card-en">M44 (Beehive Cluster)</p>
+            </div>
+            <span class="badge astro-ok" title="쌍안경·광시야 촬영에 적합, 넓게 퍼져 있어 저배율 필수">○ 촬영 가능</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산개성단</span>
+            <span class="chip chip-const">게자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 4/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span></span>
+          </div>
+          <div class="flag">⚠ 새벽에도 고도 낮음</div>
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 04:00부터 새벽까지 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">3.7 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">95′ (1.5°)</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 610광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">봄(2~4월) — 이날은 새벽에야 겨우 상승, 관측 난이도 높음</span>
+            </div>
+          </div>
+          <p class="note">벌집처럼 별이 밀집된 대형 산개성단이나, 9월 세션에서는 새벽 낮은 고도에서만 잠깐 볼 수 있습니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 쌍안경·광시야 촬영에 적합, 넓게 퍼져 있어 저배율 필수</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Beehive_Cluster" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="m35 messier 35" data-cat="cluster-winter"
+                 data-visual="5" data-astro="best" data-kind="산개성단"
+                 data-urgency="10.00" data-mag="5.3">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>M35</h3>
+              <p class="card-en">Messier 35</p>
+            </div>
+            <span class="badge astro-best" title="사슬처럼 이어진 별줄이 촬영에서 매력적, 옆의 소형성단 NGC2158과 대비">◎ 강력 추천</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산개성단</span>
+            <span class="chip chip-const">쌍둥이자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 5/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 01:20부터 새벽까지 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">5.3 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">28′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 2,970광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">겨울(12~2월) — 자정 이후 상승</span>
+            </div>
+          </div>
+          <p class="note">보름달만 한 크기에 밝은 별들이 흩어져 있어 쌍안경으로도 훌륭합니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 사슬처럼 이어진 별줄이 촬영에서 매력적, 옆의 소형성단 NGC2158과 대비</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Messier_35" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="m41 messier 41" data-cat="cluster-winter"
+                 data-visual="4" data-astro="ok" data-kind="산개성단"
+                 data-urgency="10.00" data-mag="4.5">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>M41</h3>
+              <p class="card-en">Messier 41</p>
+            </div>
+            <span class="badge astro-ok" title="시리우스 남쪽, 낮은 고도 때문에 촬영 난이도 있음">○ 촬영 가능</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산개성단</span>
+            <span class="chip chip-const">큰개자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 4/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span></span>
+          </div>
+          <div class="flag">⚠ 새벽에도 지평선 근접, 관측 어려움</div>
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 04:45부터 새벽까지 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">4.5 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">38′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 2,360광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">겨울(1~2월) — 새벽에도 고도가 매우 낮음</span>
+            </div>
+          </div>
+          <p class="note">시리우스 바로 남쪽에 있어 맨눈으로도 흐릿하게 보입니다. 이번 세션에서는 새벽에도 지평선에 가까워 관측이 어려울 수 있습니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 시리우스 남쪽, 낮은 고도 때문에 촬영 난이도 있음</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Messier_41" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="m36 messier 36" data-cat="cluster-winter"
+                 data-visual="4" data-astro="ok" data-kind="산개성단"
+                 data-urgency="10.00" data-mag="6.3">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>M36</h3>
+              <p class="card-en">Messier 36</p>
+            </div>
+            <span class="badge astro-ok" title="M37·M38과 나란히 삼형제 촬영 세트로 인기">○ 촬영 가능</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산개성단</span>
+            <span class="chip chip-const">마차부자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 4/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 00:15부터 새벽까지 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">6.3 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">12′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 4,340광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">겨울(12~2월) — 자정 이후 상승</span>
+            </div>
+          </div>
+          <p class="note">마차부자리 삼형제 성단 중 가장 성긴 편으로, 젊고 파란 별들이 특징입니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> M37·M38과 나란히 삼형제 촬영 세트로 인기</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Messier_36" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="m37 messier 37" data-cat="cluster-winter"
+                 data-visual="5" data-astro="best" data-kind="산개성단"
+                 data-urgency="10.00" data-mag="6.2">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>M37</h3>
+              <p class="card-en">Messier 37</p>
+            </div>
+            <span class="badge astro-best" title="마차부 삼형제 중 가장 크고 별이 풍부해 촬영·안시 모두 최고 인기">◎ 강력 추천</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산개성단</span>
+            <span class="chip chip-const">마차부자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 5/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 00:40부터 새벽까지 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">6.2 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">24′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 4,510광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">겨울(12~2월)</span>
+            </div>
+          </div>
+          <p class="note">마차부자리 삼형제 성단 중 가장 화려하고 별이 많아 소형 망원경에서도 인상적입니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 마차부 삼형제 중 가장 크고 별이 풍부해 촬영·안시 모두 최고 인기</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Messier_37" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="m38 messier 38" data-cat="cluster-winter"
+                 data-visual="4" data-astro="ok" data-kind="산개성단"
+                 data-urgency="10.00" data-mag="7.4">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>M38</h3>
+              <p class="card-en">Messier 38</p>
+            </div>
+            <span class="badge astro-ok" title="십자(X)형 별 배열이 특징적인 촬영 대상">○ 촬영 가능</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">산개성단</span>
+            <span class="chip chip-const">마차부자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 4/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 00:05부터 새벽까지 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">7.4 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">21′</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 3,480광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">겨울(12~2월)</span>
+            </div>
+          </div>
+          <p class="note">별들이 십자 또는 파이(π) 모양으로 배열되어 보이는 것이 특징인 마차부 삼형제 중 하나입니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 십자(X)형 별 배열이 특징적인 촬영 대상</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Messier_38" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+
+        <article class="card" data-name="kemble&#x27;s cascade kemble&#x27;s cascade" data-cat="cluster-winter"
+                 data-visual="5" data-astro="best" data-kind="애스터리즘"
+                 data-urgency="10.00" data-mag="5.0">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>Kemble&#x27;s Cascade</h3>
+              <p class="card-en">Kemble&#x27;s Cascade</p>
+            </div>
+            <span class="badge astro-best" title="쌍안경 시야에 꼭 맞는 별들의 폭포수 모양, 저배율 촬영·안시 모두 인기">◎ 강력 추천</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">애스터리즘</span>
+            <span class="chip chip-const">기린자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 5/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:25부터 새벽까지 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">5~10 등급 별들의 사슬</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">약 3° (직선상)</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">—</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">겨울 중심(11~2월), 기린자리는 준주극성이라 밤새 관측 가능</span>
+            </div>
+          </div>
+          <p class="note">약 20개의 별이 일직선으로 늘어서 마치 폭포처럼 쏟아지는 모습을 보여주는 아름다운 애스터리즘입니다. 끝에는 NGC1502 산개성단이 있습니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 쌍안경 시야에 꼭 맞는 별들의 폭포수 모양, 저배율 촬영·안시 모두 인기</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Kemble%27s_Cascade" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+        </div>
+      </section>
+
+      <section class="category" id="star-polaris" data-section="1">
+        <div class="cat-head">
+          <span class="cat-emoji">⭐</span>
+          <div>
+            <h2>그 밖의 이중성</h2>
+            <p class="cat-desc">북극성은 밤새 거의 같은 자리에 있어 언제든 확인할 수 있습니다.</p>
+          </div>
+          <span class="cat-count">1개 대상</span>
+        </div>
+        <div class="grid">
+          
+        <article class="card" data-name="polaris (북극성 이중성) polaris (α umi)" data-cat="star-polaris"
+                 data-visual="3" data-astro="visual" data-kind="이중성·변광성"
+                 data-urgency="10.00" data-mag="2.0">
+          <div class="card-top">
+            <div class="card-heading">
+              <h3>Polaris (북극성 이중성)</h3>
+              <p class="card-en">Polaris (α UMi)</p>
+            </div>
+            <span class="badge astro-visual" title="안시 확인용, 밝기 차가 커서 소형 망원경 고배율 필요">— 안시 위주</span>
+          </div>
+          <div class="chiprow">
+            <span class="chip chip-type">이중성</span>
+            <span class="chip chip-const">작은곰자리</span>
+          </div>
+          <div class="visual-row" title="안시관측 추천도 3/5">
+            <span class="visual-label">안시 추천도</span>
+            <span class="stars"><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span><span class="star">★</span></span>
+          </div>
+          
+          <div class="window-row">
+            <span class="window-icon">🕐</span>
+            <span class="window-text">오늘 밤: 20:00~06:00 밤새 관측 가능</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-label">밝기(등급)</span>
+              <span class="stat-value">A 2.0 / B 8.7 등급</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">겉보기 크기</span>
+              <span class="stat-value">—</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">각거리</span>
+              <span class="stat-value">18.2″</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">거리</span>
+              <span class="stat-value">약 447광년</span>
+            </div>
+            <div class="stat stat-wide">
+              <span class="stat-label">적정 관측 시기(일반)</span>
+              <span class="stat-value">연중 항상 같은 고도(북위 약 37.8°)</span>
+            </div>
+          </div>
+          <p class="note">북극성 자체는 밝지만 동반성은 8등급으로 어두워 밝기 차이가 큰 이중성입니다. 소형 망원경으로 도전해볼 만합니다.</p>
+          <p class="astro-note"><strong>촬영 팁:</strong> 안시 확인용, 밝기 차가 커서 소형 망원경 고배율 필요</p>
+          <a class="photolink" href="https://en.wikipedia.org/wiki/Polaris" target="_blank" rel="noopener">사진·상세정보 보기 (Wikipedia) ↗</a>
+        </article>
+        </div>
+      </section>
+
+<footer>
+  <p>자료 출처: Wikipedia(각 대상 문서), TheSkyLive, timeanddate.com, astronomy.com, telescopeadvisor.com 등 (2026년 9월 기준 검색). "오늘 밤 관측 가능 시간대"는 각 대상의 J2000 좌표로 파주 상공 고도를 직접 계산한 근사치이며, 태양계 천체(달·행성)는 검색된 출몰 시각을 바탕으로 한 근사치입니다. 실제 관측 전 최신 자료로 재확인하세요.</p>
+</footer>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  function safeGet(k){ try { return localStorage.getItem(k); } catch(e) { return null; } }
+  function safeSet(k,v){ try { localStorage.setItem(k,v); } catch(e) {} }
+
+  /* ---------- theme / redlight ---------- */
+  var themeBtn = document.getElementById('themeBtn');
+  var redBtn = document.getElementById('redBtn');
+
+  var savedTheme = safeGet('obs-theme');
+  if (savedTheme === 'light') { root.setAttribute('data-theme','light'); themeBtn.setAttribute('aria-pressed','true'); themeBtn.textContent = '🌙 어두운 화면'; }
+  var savedRed = safeGet('obs-redlight');
+  if (savedRed === 'on') { root.setAttribute('data-redlight','on'); redBtn.setAttribute('aria-pressed','true'); }
+
+  themeBtn.addEventListener('click', function(){
+    var isLight = root.getAttribute('data-theme') === 'light';
+    if (isLight) { root.removeAttribute('data-theme'); themeBtn.setAttribute('aria-pressed','false'); themeBtn.textContent = '🌗 밝은 화면'; safeSet('obs-theme','dark'); }
+    else { root.setAttribute('data-theme','light'); themeBtn.setAttribute('aria-pressed','true'); themeBtn.textContent = '🌙 어두운 화면'; safeSet('obs-theme','light'); }
+  });
+
+  redBtn.addEventListener('click', function(){
+    var isOn = root.getAttribute('data-redlight') === 'on';
+    if (isOn) { root.removeAttribute('data-redlight'); redBtn.setAttribute('aria-pressed','false'); safeSet('obs-redlight','off'); }
+    else { root.setAttribute('data-redlight','on'); redBtn.setAttribute('aria-pressed','true'); safeSet('obs-redlight','on'); }
+  });
+
+  /* ---------- gather item data ---------- */
+  var cardEls = Array.prototype.slice.call(document.querySelectorAll('.category .card'));
+  var items = cardEls.map(function(el){
+    return {
+      el: el,
+      name: el.getAttribute('data-name') || '',
+      visual: parseInt(el.getAttribute('data-visual'), 10) || 1,
+      astro: el.getAttribute('data-astro') || 'ok',
+      kind: el.getAttribute('data-kind') || '기타',
+      urgency: parseFloat(el.getAttribute('data-urgency')) || 99,
+      mag: parseFloat(el.getAttribute('data-mag')),
+      titleKr: el.querySelector('h3') ? el.querySelector('h3').textContent : ''
+    };
+  });
+
+  var sections = Array.prototype.slice.call(document.querySelectorAll('.category'));
+  var resultsWrap = document.getElementById('resultsWrap');
+  var resultsGrid = document.getElementById('resultsGrid');
+  var resultsHeadCount = document.getElementById('resultsHeadCount');
+  var resultsTitle = document.getElementById('resultsTitle');
+  var emptyState = document.getElementById('emptyState');
+  var resultCount = document.getElementById('resultCount');
+
+  var searchBox = document.getElementById('searchBox');
+  var sortSelect = document.getElementById('sortSelect');
+  var kindSelect = document.getElementById('kindSelect');
+  var visualSlider = document.getElementById('visualSlider');
+  var visualSliderVal = document.getElementById('visualSliderVal');
+  var astroToggles = Array.prototype.slice.call(document.querySelectorAll('.astro-toggle'));
+  var resetBtn = document.getElementById('resetBtn');
+
+  var state = { q: '', sort: 'default', kind: 'all', minVisual: 1, astro: {best:true, ok:true, hard:true, visual:true} };
+
+  function isDefaultState(){
+    return state.q === '' && state.sort === 'default' && state.kind === 'all' && state.minVisual === 1 &&
+      state.astro.best && state.astro.ok && state.astro.hard && state.astro.visual;
+  }
+
+  function sortLabel(mode){
+    return {
+      urgency: '곧 지는 순',
+      'visual-desc': '안시 추천도 높은 순',
+      'mag-asc': '밝은 순',
+      name: '가나다순',
+      default: '기본'
+    }[mode] || mode;
+  }
+
+  function render(){
+    var def = isDefaultState();
+    resetBtn.style.visibility = def ? 'hidden' : 'visible';
+
+    if (def) {
+      resultsWrap.hidden = true;
+      sections.forEach(function(s){ s.hidden = false; });
+      resultCount.textContent = '';
+      return;
+    }
+
+    sections.forEach(function(s){ s.hidden = true; });
+    resultsWrap.hidden = false;
+
+    var q = state.q.toLowerCase();
+    var filtered = items.filter(function(it){
+      if (q && it.name.indexOf(q) === -1) return false;
+      if (state.kind !== 'all' && it.kind !== state.kind) return false;
+      if (it.visual < state.minVisual) return false;
+      if (!state.astro[it.astro]) return false;
+      return true;
+    });
+
+    filtered.sort(function(a,b){
+      switch(state.sort){
+        case 'urgency': return a.urgency - b.urgency;
+        case 'visual-desc': return b.visual - a.visual || a.urgency - b.urgency;
+        case 'mag-asc': return a.mag - b.mag;
+        case 'name': return a.titleKr.localeCompare(b.titleKr, 'ko');
+        default: return 0;
+      }
+    });
+
+    resultsGrid.innerHTML = '';
+    filtered.forEach(function(it){ resultsGrid.appendChild(it.el.cloneNode(true)); });
+
+    resultsTitle.textContent = (state.sort === 'default') ? '검색 결과' : sortLabel(state.sort);
+    var countText = filtered.length + ' / ' + items.length + '개 대상';
+    resultsHeadCount.textContent = countText;
+    resultCount.innerHTML = '<b>' + filtered.length + '</b> / ' + items.length + '개 표시 중';
+    emptyState.hidden = filtered.length !== 0;
+  }
+
+  searchBox.addEventListener('input', function(){ state.q = searchBox.value.trim(); render(); });
+  sortSelect.addEventListener('change', function(){ state.sort = sortSelect.value; render(); });
+  kindSelect.addEventListener('change', function(){ state.kind = kindSelect.value; render(); });
+  visualSlider.addEventListener('input', function(){
+    state.minVisual = parseInt(visualSlider.value, 10);
+    visualSliderVal.textContent = (state.minVisual === 1) ? '★1 이상 (전체)' : ('★' + state.minVisual + ' 이상');
+    render();
+  });
+  astroToggles.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var key = btn.getAttribute('data-astro');
+      state.astro[key] = !state.astro[key];
+      btn.classList.toggle('on', state.astro[key]);
+      render();
+    });
+  });
+  resetBtn.addEventListener('click', function(){
+    state = { q: '', sort: 'default', kind: 'all', minVisual: 1, astro: {best:true, ok:true, hard:true, visual:true} };
+    searchBox.value = '';
+    sortSelect.value = 'default';
+    kindSelect.value = 'all';
+    visualSlider.value = 1;
+    visualSliderVal.textContent = '★1 이상 (전체)';
+    astroToggles.forEach(function(btn){ btn.classList.add('on'); });
+    render();
+  });
+
+  render();
+})();
+</script>
